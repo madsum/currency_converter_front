@@ -33,7 +33,7 @@ class App extends Component {
 
   getExchangeAmount = () => {
     var url =
-      "http://localhost:8080/excurrency?currency=" +
+      "https://currency-converter-back.herokuapp.com/excurrency?currency=" +
       this.state.currency +
       "&exCurrency=" +
       this.state.excurrency +
