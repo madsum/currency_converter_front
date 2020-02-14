@@ -31,6 +31,12 @@ class App extends Component {
       });
   }
 
+  handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      this.getExchangeAmount();
+    }
+  }
+
   getExchangeAmount = () => {
     var url =
       "https://currency-converter-back.herokuapp.com/excurrency?currency=" +
@@ -88,6 +94,7 @@ class App extends Component {
           value={this.state.amount}
           placeholder="amount in digit"
           onChange={this.onChange}
+          onKeyDown={this.handleKeyDown}
         ></input>
         <br />
         <br />
