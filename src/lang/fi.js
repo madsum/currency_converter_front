@@ -7,15 +7,5 @@ export default {
     currencyError_msg: 'Paikallisvaluutta ei saa olla tyhjä',
     excurrencyError_msg: 'Vaihtovaluutta ei saa olla tyhjä',
     amountError_msg: 'Määrä ei saa olla tyhjä',
-    
-    title: 'Title',
-  
-    copy: {
-      p1: 'Paragraph with <b>html</b> inside',
-      p2: 'Paragraph with clickable %(link)s',
-    },
-  
-    link: 'link',
-    
-    placeholder: 'Input with placeholder',
+    no_currecny_found: 'Valuutta ei löytynyt'
   }

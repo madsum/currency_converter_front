@@ -3,13 +3,8 @@ body {
   font-family: sans-serif;
 }
 
-
 .alert {
   width:320px;    
-}
-
-.suggestions li:not(:last-of-type) {
-  border-bottom: 1px solid #999;
 }
 
 .textarea{

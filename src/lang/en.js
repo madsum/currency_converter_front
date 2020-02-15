@@ -7,15 +7,5 @@ export default {
     currencyError_msg: 'Locale currency must not be empty',
     excurrencyError_msg: 'Exchange currency must not be empty',
     amountError_msg: 'Amount must not be empty',
-
-
-    title: 'Title',
-  
-    copy: {
-      p1: 'Paragraph with <b>html</b> inside',
-      p2: 'Paragraph with clickable %(link)s',
-    },
-  
-    link: 'link'
-    
+    no_currecny_found: 'No currency found'
   }

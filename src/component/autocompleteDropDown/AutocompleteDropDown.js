@@ -1,7 +1,14 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import counterpart from 'counterpart';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './AutocompleteDropDown.js'
+import './AutocompleteDropDown.css'
+import en from './../../lang/en';
+import fi from './../../lang/fi';
+
+counterpart.registerTranslations('en', en);
+counterpart.registerTranslations('fi', fi);
+counterpart.setLocale('en');
 
 class AutocompleteDropDown extends Component {
   static propTypes = {
@@ -25,7 +32,6 @@ class AutocompleteDropDown extends Component {
       // What the user has entered
       userInput: ""
     };
-
   }
 
   onChange = e => {
@@ -109,7 +115,7 @@ class AutocompleteDropDown extends Component {
     
 
     let suggestionsListComponent;
-
+    const no_currecny_found = counterpart.translate('no_currecny_found');
     if (showSuggestions && userInput) {
       if (filteredSuggestions.length) {
         suggestionsListComponent = (
@@ -133,7 +139,7 @@ class AutocompleteDropDown extends Component {
       } else {
         suggestionsListComponent = (
           <div className="no-suggestions">
-            <em>No currecny found</em>
+            <em>{no_currecny_found}</em>
           </div>
         );
       }
