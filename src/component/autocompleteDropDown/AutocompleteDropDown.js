@@ -106,6 +106,8 @@ class AutocompleteDropDown extends Component {
       }
     } = this;
 
+    
+
     let suggestionsListComponent;
 
     if (showSuggestions && userInput) {
