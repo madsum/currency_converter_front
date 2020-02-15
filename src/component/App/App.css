@@ -6,7 +6,7 @@ body {
 input {
   border: 1px solid #999;
   padding: 0.5rem;
-  width: 300px;
+  width: 320px;
 }
 
 .no-suggestions {
@@ -51,4 +51,8 @@ input {
   font-size: 20px;
   font-weight: bold;
   color: #00cc00;
-} 
+}
+
+.label{
+  color: #f71707;
+}

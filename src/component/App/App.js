@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AutocompleteDropDown from "./component/AutocompleteDropDown";
+import AutocompleteDropDown from "../autocompleteDropDown/AutocompleteDropDown";
 import { Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import "./App.css";
@@ -12,51 +12,79 @@ class App extends Component {
       currency: "",
       excurrency: "",
       amount: "",
-      result: ""
+      result: "",
+      currecyTypeLocale: false,
+      currencyError: "",
+      excurrencyError: "",
+      amountError: ""
     };
     this.onChange = this.onChange.bind(this);
   }
 
   changeCurrency(currency) {
     this.setState({ currency: currency });
+    this.setState({currencyError: ""})
   }
 
   changeExcurrency(excurrency) {
     this.setState({ excurrency: excurrency });
+    this.setState({excurrencyError: ""})
   }
 
   async onChange(e) {
     this.setState({
-          [e.target.name]: e.target.value
-      });
+      amount: e.target.value
+    });
+    this.setState({amountError: ""})
   }
 
   handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      this.getExchangeAmount();
+      if(this.checkFiledError()){
+        this.getExchangeAmount();
+      }
     }
   }
 
+  checkFiledError(){
+    var okToCall = true
+    if(this.state.currency === ""){
+      this.setState({currencyError: "Locale currecncy must not be empty"})
+      okToCall = false
+    }
+   if(this.state.excurrency === ""){
+        this.setState({excurrencyError: "Exchange currecncy must not be empty"})
+        okToCall = false
+      }
+   if(this.state.amount === "" ){
+        this.setState({amountError: "Amount must not be empty"})
+        okToCall = false
+      }
+      return okToCall
+  }
+
   getExchangeAmount = () => {
-    var url =
-      "https://currency-converter-back.herokuapp.com/excurrency?currency=" +
-      this.state.currency +
-      "&exCurrency=" +
-      this.state.excurrency +
-      "&amount=" +
-      this.state.amount;
-    axios({
-      method: "GET",
-      url: url
-    }).then(response => {
-      this.setState({
-        result: response.data
+    if(this.checkFiledError()){
+      var url =
+        "https://currency-converter-back.herokuapp.com/excurrency?currency=" +
+        this.state.currency +
+        "&exCurrency=" +
+        this.state.excurrency +
+        "&amount=" +
+        this.state.amount;
+      axios({
+        method: "GET",
+        url: url
+      }).then(response => {
+        this.setState({
+          result: response.data
+        })
       })
-    })
-    .catch((error) => {
-        // handle this error
-        console.log('error: '+error);
-    })
+      .catch((error) => {
+          // handle this error
+          console.log('error: '+error);
+      })    
+    }
   }
 
   render() {
@@ -69,22 +97,22 @@ class App extends Component {
           data={{
             changeCurrency: this.changeCurrency.bind(this),
             changeExcurrency: this.changeExcurrency.bind(this),
-            currecyType: "locale",
+            currecyTypeLocale: true,
             placeholderText: "local currency"
           }}
           suggestions={currecyData}
-        />
+        />  <label className="label">{this.state.currencyError}</label>
         <br />
         <br />
         <AutocompleteDropDown
           data={{
             changeCurrency: this.changeCurrency.bind(this),
             changeExcurrency: this.changeExcurrency.bind(this),
-            currecyType: "exchange",
+            currecyTypeLocale: false,
             placeholderText: "exchange currency"
           }}
           suggestions={currecyData}
-        />
+        /> <label className="label"> {this.state.excurrencyError} </label>
         <br />
         <br />
         <input
@@ -95,7 +123,7 @@ class App extends Component {
           placeholder="amount in digit"
           onChange={this.onChange}
           onKeyDown={this.handleKeyDown}
-        ></input>
+        ></input> <label className="label"> {this.state.amountError} </label>
         <br />
         <br />
         <Button
@@ -104,7 +132,7 @@ class App extends Component {
           }}
           variant="primary"
         >
-          Show exchanged amount
+        Show exchanged amount
         </Button>
         <br />
         <br />

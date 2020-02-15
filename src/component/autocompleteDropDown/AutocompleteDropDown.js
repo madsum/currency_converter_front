@@ -1,9 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-const currecyType = "locale"
+import './AutocompleteDropDown.js'
 
 class AutocompleteDropDown extends Component {
   static propTypes = {
@@ -55,7 +53,7 @@ class AutocompleteDropDown extends Component {
       showSuggestions: false,
       userInput: e.currentTarget.innerText
     });
-    if (currecyType === this.props.data.currecyType) {
+    if (this.props.data.currecyTypeLocale) {
       this.props.data.changeCurrency(e.currentTarget.innerText)
     } else {
       this.props.data.changeExcurrency(e.currentTarget.innerText)
@@ -72,7 +70,7 @@ class AutocompleteDropDown extends Component {
         showSuggestions: false,
         userInput: filteredSuggestions[activeSuggestion]
       });
-      if (currecyType === this.props.data.currecyType) {
+      if (this.props.data.currecyTypeLocale) {
         this.props.data.changeCurrency(filteredSuggestions[activeSuggestion])
       } else {
         this.props.data.changeExcurrency(filteredSuggestions[activeSuggestion])
@@ -133,7 +131,7 @@ class AutocompleteDropDown extends Component {
       } else {
         suggestionsListComponent = (
           <div className="no-suggestions">
-            <em>No suggestions found</em>
+            <em>No currecny found</em>
           </div>
         );
       }
