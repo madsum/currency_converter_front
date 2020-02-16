@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AutocompleteDropDown from "../autocompleteDropDown/AutocompleteDropDown";
 import { Button, Alert } from "react-bootstrap";
+import currecyData from './allCurrency'
 import axios from "axios";
 import counterpart from 'counterpart';
 import Translate from 'react-translate-component';
@@ -60,6 +61,7 @@ class App extends Component {
     const currencyError_msg = counterpart.translate('currencyError_msg');
     const excurrencyError_msg = counterpart.translate('excurrencyError_msg');
     const amountError_msg = counterpart.translate('amountError_msg');
+    console.log("all curr: "+currecyData)
     if (this.state.currency === "") {
       this.setState({ currencyError: currencyError_msg })
       okToCall = false
@@ -77,7 +79,8 @@ class App extends Component {
 
   getExchangeAmount = () => {
     if (this.checkFiledError()) {
-      var url =
+      
+      var url = 
         "https://currency-converter-back.herokuapp.com/excurrency?currency=" +
         this.state.currency +
         "&exCurrency=" +
@@ -116,8 +119,7 @@ class App extends Component {
     const amount_in_digit = counterpart.translate('amount_in_digit');
     const amount_button = counterpart.translate('amount_button');
     return (
-      <div>
-        
+      <div>        
         <select className="select" value={this.state.lang} onChange={this.onLangChange}>
           <option value="en">English</option>
           <option value="fi">Finnish</option>
@@ -176,57 +178,3 @@ class App extends Component {
 }
 
 export default App;
-
-const currecyData = [
-  "AED",
-  "ARS",
-  "AUD",
-  "BGN",
-  "BRL",
-  "BSD",
-  "CAD",
-  "CHF",
-  "CLP",
-  "CNY",
-  "COP",
-  "CZK",
-  "DKK",
-  "DOP",
-  "EGP",
-  "EUR",
-  "FJD",
-  "GBP",
-  "GTQ",
-  "HKD",
-  "HRK",
-  "HUF",
-  "IDR",
-  "ILS",
-  "INR",
-  "ISK",
-  "JPY",
-  "KRW",
-  "KZT",
-  "MXN",
-  "MYR",
-  "NOK",
-  "NZD",
-  "PAB",
-  "PEN",
-  "PHP",
-  "PKR",
-  "PLN",
-  "PYG",
-  "RON",
-  "RUB",
-  "SAR",
-  "SEK",
-  "SGD",
-  "THB",
-  "TRY",
-  "TWD",
-  "UAH",
-  "USD",
-  "UYU",
-  "ZAR"
-];
