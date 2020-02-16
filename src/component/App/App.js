@@ -109,7 +109,8 @@ class App extends Component {
     this.setState(s => ({
       currencyError: '',
       excurrencyError: '',
-      amountError: ''
+      amountError: '',
+      result: ''
     }))
   }
 
