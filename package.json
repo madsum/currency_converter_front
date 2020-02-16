@@ -39,7 +39,10 @@
     ]
   },
   "devDependencies": {
+    "csp-html-webpack-plugin": "^3.0.4",
+    "customize-cra": "^0.9.1",
     "jest-dom": "^4.0.0",
+    "react-app-rewired": "^2.1.5",
     "react-test-renderer": "^16.12.0"
   }
 }

@@ -61,7 +61,7 @@ class App extends Component {
     const currencyError_msg = counterpart.translate('currencyError_msg');
     const excurrencyError_msg = counterpart.translate('excurrencyError_msg');
     const amountError_msg = counterpart.translate('amountError_msg');
-    console.log("all curr: "+currecyData)
+    
     if (this.state.currency === "") {
       this.setState({ currencyError: currencyError_msg })
       okToCall = false
